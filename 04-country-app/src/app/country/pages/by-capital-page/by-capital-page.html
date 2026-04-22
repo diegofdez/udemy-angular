@@ -1,0 +1,14 @@
+<country-search-input
+  placeholder="Introduce capital"
+  (searchValue)="query.set($event)"
+  [initialValue]="query()"
+/>
+
+@if (countryResource.error()) {
+  <div class="alert alert-danger">
+    {{ countryResource.error() }}
+  </div>
+} @else if (countryResource.hasValue()) {
+  <country-list [countries]="countryResource.value()!" />
+}
+

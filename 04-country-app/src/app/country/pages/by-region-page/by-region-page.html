@@ -1,0 +1,20 @@
+<section class="row mt-2">
+  <div class="flex-col">
+  @for (region of regions; track region) {
+    <button
+      class="btn btn-outline mr-2 w-[100px]"
+      [class.btn-primary]="selectedRegion() === region"
+      (click)="selectedRegion.set(region)"
+    >{{ region }}</button>
+  }
+  </div>
+</section>
+
+@if (countryResource.error()) {
+  <div class="alert alert-danger">
+    {{ countryResource.error() }}
+  </div>
+} @else if (countryResource.hasValue()) {
+  <country-list [countries]="countryResource.value()!" />
+}
+
