@@ -1,0 +1,67 @@
+<app-title title="Control Flow" title2="Patata" withShadow />
+
+<section class="grid grid-cols-1 md:grid-cols-2 gap-3">
+  <div class="bg-white rounded shadow p-10">
+    <h2 class="text-2xl font-bold mb-5">{{ showContent() }}</h2>
+    <button
+      (click)="toggleContent()"
+      class="bg-blue-500 text-white rounded p-2"
+    >
+      Cambia el estado
+    </button>
+
+    @if (showContent()) {
+      <p>Hola Mundo</p>
+    }
+    @else {
+      <p>**********</p>
+    }
+  </div>
+
+  <div class="bg-white rounded shadow p-10">
+    <h2 class="text-2xl font-bold mb-5">Grade: {{ grade() }}</h2>
+
+    @switch (grade()) {
+      @case ('A') {
+        <p>Arriba de 90</p>
+      }
+      @case ('B') {
+        <p>Arriba de 80</p>
+      }
+      @case ('F') {
+        <p>Reprobado</p>
+      }
+      @default {
+        <p>Unknown grade</p>
+      }
+    }
+  </div>
+
+  <div class="bg-white rounded shadow p-10">
+    <h2 class="text-2xl font-bold mb-5">Frameworks</h2>
+
+    <ul>
+      @for (framework of frameworks(); track framework; let i = $index, count = $count, first = $first, last = $last, even = $even, odd = $odd) {
+        <li
+          [class]="{
+            'bg-red-100': even,
+            'bg-green-100': odd,
+          }"
+        >{{ i + 1 }}/{{ count }} - {{ framework }} {{ last ? '(last)' : '' }}</li>
+      }
+    </ul>
+  </div>
+
+  <div class="bg-white rounded shadow p-10">
+    <h2 class="text-2xl font-bold mb-5">Frameworks 2</h2>
+
+    <ul>
+      @for (framework of frameworks2(); track $index) {
+        <li>{{ framework }}</li>
+      }
+      @empty {
+        <li>No hay FWKs</li>
+      }
+    </ul>
+  </div>
+</section>
